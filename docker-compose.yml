@@ -33,18 +33,18 @@ services:
     depends_on:
       - nats-server
 
-  # orders-ms:
-  #   build: ./orders-ms
-  #   volumes:
-  #     - ./orders-ms/src:/usr/src/app/src
-  #   command: npm run compose:start
-  #   environment:
-  #     - PORT=3002
-  #     - NATS_SERVERS=nats://nats-server:4222
-  #     - DATABASE_URL=postgresql://postgres:123456@orders-db:5432/orders-db?schema=public
-  #   depends_on:
-  #     - nats-server
-  #     - orders-db
+  orders-ms:
+    build: ./orders-ms
+    volumes:
+      - ./orders-ms/src:/usr/src/app/src
+    command: npm run compose:start
+    environment:
+      - PORT=3002
+      - NATS_SERVERS=nats://nats-server:4222
+      - DATABASE_URL=postgresql://postgres:123456@orders-db:5432/orders-db?schema=public
+    depends_on:
+      - nats-server
+      - orders-db
 
   orders-db:
     container_name: orders_db
