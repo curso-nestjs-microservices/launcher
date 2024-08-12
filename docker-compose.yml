@@ -76,3 +76,17 @@ services:
       - STRIPE_ENDPOINT_SECRET=${STRIPE_ENDPOINT_SECRET}
     depends_on:
       - nats-server
+
+  auth-ms:
+    build: ./auth-ms
+    volumes:
+      - ./auth-ms/src:/usr/src/app/src
+    command: npm run compose:start
+    environment:
+      - PORT=3004
+      - NATS_SERVERS=nats://nats-server:4222
+      - DATABASE_URL=${AUTH_DB_CONNECTION}
+      - JWT_SECRET=${JWT_SECRET}
+      - TOKEN_EXPIRATION=3d
+    depends_on:
+      - nats-server
