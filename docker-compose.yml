@@ -90,7 +90,7 @@ services:
     environment:
       - PORT=3004
       - NATS_SERVERS=${NATS_SERVERS}
-      - DATABASE_URL=${AUTH_DB_CONNECTION}
+      - DATABASE_URL=${MONGO_DB_URL}
       - JWT_SECRET=${JWT_SECRET}
       - TOKEN_EXPIRATION=3d
     depends_on:
