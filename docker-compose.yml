@@ -6,6 +6,7 @@ services:
     image: nats:2.10-alpine3.20
     ports:
       - "8222:8222"
+      - "4222:4222"
 
   client-gateway:
     build: ./client-gateway
